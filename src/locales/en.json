@@ -1,0 +1,37 @@
+{
+  "workHub": "Work Hub",
+  "exploreJobs": "Explore job opportunities and apply easily.",
+  "apply": "Apply Now",
+  "applied": "Applied",
+  "applyFor": "Apply for",
+
+  "tutor": "Tutor",
+  "tutorDesc": "Help children or adults learn subjects you are good at.",
+  "homeCook":"Home Cook",
+  "homeCookdesc":"Cook delicious meals for your community or online orders. Earn while working flexible hours.",
+
+  "houseHelper":"House Helper",
+  "houseHelperdesc":"Assist households with cleaning, organizing, and daily chores. Good earning with flexible timing.",
+
+  "bakingHelper":" Baking Helper",
+  "bakingHelperdesc":"Assist bakers in preparing dough, decorating cakes, and managing kitchen tasks. Flexible part-time work.",
+
+  "packingAssistant":"Packing Assistant",
+  "packingAssistantdesc":"Help businesses pack products for shipping or events. Simple tasks with flexible timing and decent pay.",
+
+  "deliveryPerson":"Delivery Person",
+  "deliveryPersondesc":"Deliver packages or food locally. Flexible hours and a great way to earn extra income.",
+
+  "freelanceDesigner":"Freelance Designer",
+  "freelanceDesignerdesc":" Create graphics, posters, or social media content for local businesses or online clients. Work from home with flexible hours.",
+
+  "socialmediaAssistant":"Social Media Assistant",
+  "socialmediaAssistantdesc":" Help businesses manage their social media accounts, create posts, and engage with followers. Flexible online work.",
+
+  "eventOrganiser":"Event Organiser",
+  "eventOrganiserdesc":"Assist in planning and organizing local events, parties, or community programs. Flexible part-time work with good exposure.",
+
+  "fullName": "Full Name",
+  "cancel": "Cancel",
+  "submit": "Submit Application"
+}

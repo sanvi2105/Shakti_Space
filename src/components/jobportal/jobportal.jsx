@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { 
   FaChalkboardTeacher, 
   FaUtensils, 
@@ -14,6 +15,7 @@ import { SlideLeft } from "../../utility/animation";
 
 
 const JobPortal = () => {
+  const { t } = useTranslation();
   const [selectedJob, setSelectedJob] = useState(null);
   const [appliedJobs, setAppliedJobs] = useState([]);
   const [formData, setFormData] = useState({
@@ -57,9 +59,9 @@ const handleSubmit = (e) => {
 };
   return (
     <div className="container py-10">
-      <h1 className="text-3xl font-bold text-center mb-6 ">Work hub</h1>
+      <h1 className="text-3xl font-bold text-center mb-6 ">{t("workHub")}</h1>
      <h1 className="text-3xl font-bold text-center mb-6 ">
-           Explore job opportunities and apply easily.</h1>
+           {t("exploreJobs")}</h1>
 
 
       {/* First row */}
@@ -76,10 +78,10 @@ const handleSubmit = (e) => {
         >
           <div className="flex items-center gap-4 mb-4 !text-secondary">
             <FaChalkboardTeacher className=" w-10 h-10 text-orange-300" />
-            <h2 className="font-bold text-xl">Tutor</h2>
+            <h2 className="font-bold text-xl">{t("tutor")}</h2>
           </div>
           <p className="text-gray-600 mb-3">
-            Help children or adults learn subjects you are good at. Flexible hours, can work from home.
+            {t("tutorDesc")}
           </p>
           <p className="text-sm text-gray-400 mb-4">Part-time | Local | ₹200/hr</p>
           {/* <button className="w-full !bg-secondary text-white font-semibold rounded-full py-2 hover:bg-pink-700 transition">
@@ -94,7 +96,7 @@ const handleSubmit = (e) => {
               : "bg-pink-600 text-white hover:bg-pink-700 active:scale-95"
           }`}
         >
-          {appliedJobs.includes("Tutor") ? "Applied" : "Apply Now"}
+          {appliedJobs.includes("Tutor") ? t("applied") : t("apply")}
         </button>
         </motion.div>
 
@@ -108,10 +110,10 @@ const handleSubmit = (e) => {
          className="p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1 bg-white">
           <div className="flex items-center gap-4 mb-4 !text-secondary">
             <FaUtensils className="w-10 h-10 text-blue-700" />
-            <h2 className="font-bold text-xl">Home Cook</h2>
+            <h2 className="font-bold text-xl">{t("homeCook")}</h2>
           </div>
           <p className="text-gray-600 mb-3">
-            Cook delicious meals for your community or online orders. Earn while working flexible hours.
+            {t("homeCookdesc")}
           </p>
           <p className="text-sm text-gray-400 mb-4">Flexible Hours | Local | ₹250/day</p>
           {/* <button className="w-full !bg-secondary text-white font-semibold rounded-full py-2 hover:bg-pink-700 transition">
@@ -126,7 +128,7 @@ const handleSubmit = (e) => {
                 : "bg-pink-600 text-white hover:bg-pink-700 active:scale-95"
             }`}
           >
-            {appliedJobs.includes("Home Cook") ? "Applied" : "Apply Now"}
+           {appliedJobs.includes("Tutor") ? t("applied") : t("apply")}
           </button>
         </motion.div>
 
@@ -141,10 +143,10 @@ const handleSubmit = (e) => {
          className="p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1 bg-white">
           <div className="flex items-center gap-4 mb-4 !text-secondary">
             <FaHandsHelping className="w-10 h-10 text-purple-600" />
-            <h2 className="font-bold text-xl">House Helper</h2>
+            <h2 className="font-bold text-xl">{t("houseHelper")}</h2>
           </div>
           <p className="text-gray-600 mb-3">
-            Assist households with cleaning, organizing, and daily chores. Good earning with flexible timing.
+            {t("houseHelperdesc")}
           </p>
           <p className="text-sm text-gray-400 mb-4">Part-time | Local | ₹150/day</p>
           {/* <button className="w-full !bg-secondary text-white font-semibold rounded-full py-2 hover:bg-pink-700 transition">
@@ -159,7 +161,7 @@ const handleSubmit = (e) => {
                 : "bg-pink-600 text-white hover:bg-pink-700 active:scale-95"
             }`}
           >
-            {appliedJobs.includes("House Helper") ? "Applied" : "Apply Now"}
+            {appliedJobs.includes("House Helper") ? t("applied") : t("apply")}
         </button>
         </motion.div>
       </div>
@@ -175,10 +177,10 @@ const handleSubmit = (e) => {
         className="p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1 bg-white">
           <div className="flex items-center gap-4 mb-4 !text-secondary">
             <FaBirthdayCake className="w-10 h-10 text-green-500" />
-            <h2 className="font-bold text-xl">Baking Helper</h2>
+            <h2 className="font-bold text-xl">{t("bakingHelper")}</h2>
           </div>
           <p className="text-gray-600 mb-3">
-            Assist bakers in preparing dough, decorating cakes, and managing kitchen tasks. Flexible part-time work.
+            {t("bakingHelperdesc")}
           </p>
           <p className="text-sm text-gray-400 mb-4">Part-time | Local | ₹200/day</p>
           {/* <button className="w-full !bg-secondary text-white font-semibold rounded-full py-2 hover:bg-pink-700 transition">
@@ -193,7 +195,7 @@ const handleSubmit = (e) => {
                 : "bg-pink-600 text-white hover:bg-pink-700 active:scale-95"
             }`}
           >
-            {appliedJobs.includes("Baking Helper") ? "Applied" : "Apply Now"}
+            {appliedJobs.includes("Tutor") ? t("applied") : t("apply")}
           </button>
         </motion.div>
 
@@ -206,10 +208,10 @@ const handleSubmit = (e) => {
         className="p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1 bg-white">
           <div className="flex items-center gap-4 mb-4 !text-secondary">
             <FaBoxes className="w-10 h-10 text-red-600" />
-            <h2 className="font-bold text-xl">Packing Assistant</h2>
+            <h2 className="font-bold text-xl">{t("packingAssistant")}</h2>
           </div>
           <p className="text-gray-600 mb-3">
-            Help businesses pack products for shipping or events. Simple tasks with flexible timing and decent pay.
+            {t("packingAssistantdesc")}
           </p>
           <p className="text-sm text-gray-400 mb-4">Part-time | Local | ₹150/day</p>
           {/* <button className="w-full !bg-secondary text-white font-semibold rounded-full py-2 hover:bg-pink-700 transition">
@@ -224,7 +226,7 @@ const handleSubmit = (e) => {
                 : "bg-pink-600 text-white hover:bg-pink-700 active:scale-95"
             }`}
           >
-            {appliedJobs.includes("Packing Assistant") ? "Applied" : "Apply Now"}
+            {appliedJobs.includes("Tutor") ? t("applied") : t("apply")}
           </button>
         </motion.div>
 
@@ -237,10 +239,10 @@ const handleSubmit = (e) => {
         className="p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1 bg-white">
           <div className="flex items-center gap-4 mb-4 !text-secondary">
             <FaMotorcycle className="w-10 h-10 text-red-900" />
-            <h2 className="font-bold text-xl">Delivery Person</h2>
+            <h2 className="font-bold text-xl">{t("deliveryPerson")}</h2>
           </div>
           <p className="text-gray-600 mb-3">
-            Deliver packages or food locally. Flexible hours and a great way to earn extra income.
+            {t("deliveryPersondesc")}
           </p>
           <p className="text-sm text-gray-400 mb-4">Part-time | Local | ₹250/day</p>
           {/* <button className="w-full !bg-secondary text-white font-semibold rounded-full py-2 hover:bg-pink-700 transition">
@@ -255,7 +257,7 @@ const handleSubmit = (e) => {
                 : "bg-pink-600 text-white hover:bg-pink-700 active:scale-95"
             }`}
           >
-            {appliedJobs.includes("Delivery Person") ? "Applied" : "Apply Now"}
+            {appliedJobs.includes("Tutor") ? t("applied") : t("apply")}
           </button>
         </motion.div>
       </div>
@@ -269,10 +271,10 @@ const handleSubmit = (e) => {
                   viewport={{ once: true }}  className="p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1 bg-white">
                   <div className="flex items-center gap-4 mb-4 !text-secondary">
                     <FaPaintBrush className="w-10 h-10 text-yellow-700" />
-                     <h2 className="font-bold text-xl">Freelance Designer</h2>
+                     <h2 className="font-bold text-xl">{t("freelanceDesigner")}</h2>
                      </div>
                        <p className="text-gray-600 mb-3">
-                         Create graphics, posters, or social media content for local businesses or online clients. Work from home with flexible hours.
+                        {t("freelanceDesignerdesc")}
                       </p>
                       <p className="text-sm text-gray-400 mb-4">Part-time | Remote | ₹250/day</p>
                   {/* <button className="w-full !bg-secondary text-white font-semibold rounded-full py-2 hover:bg-pink-700 transition">
@@ -287,7 +289,7 @@ const handleSubmit = (e) => {
                         : "bg-pink-600 text-white hover:bg-pink-700 active:scale-95"
                     }`}
                   >
-                    {appliedJobs.includes("Freelance Designer") ? "Applied" : "Apply Now"}
+                    {appliedJobs.includes("Tutor") ? t("applied") : t("apply")}
                   </button>
                </motion.div>
  
@@ -301,10 +303,10 @@ const handleSubmit = (e) => {
                className="p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1 bg-white">
                <div className="flex items-center gap-4 mb-4 !text-secondary">
                 <FaLaptopCode className="w-10 h-10 text-orange-500" />
-                <h2 className="font-bold text-xl">Social Media Assistant</h2>
+                <h2 className="font-bold text-xl">{t("socialmediaAssistant")}</h2>
               </div>
                 <p className="text-gray-600 mb-3">
-                   Help businesses manage their social media accounts, create posts, and engage with followers. Flexible online work.
+                  {t("socialmediaAssistantdesc")}
                </p>
                <p className="text-sm text-gray-400 mb-4">Part-time | Remote | ₹200/day</p>
               {/* <button className="w-full !bg-secondary text-white font-semibold rounded-full py-2 hover:bg-pink-700 transition">
@@ -319,7 +321,7 @@ const handleSubmit = (e) => {
                     : "bg-pink-600 text-white hover:bg-pink-700 active:scale-95"
                 }`}
               >
-                {appliedJobs.includes("Social Media Assistant") ? "Applied" : "Apply Now"}
+                {appliedJobs.includes("Tutor") ? t("applied") : t("apply")}
               </button>
             </motion.div>
 
@@ -332,11 +334,10 @@ const handleSubmit = (e) => {
                 className="p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1 bg-white">
                <div className="flex items-center gap-4 mb-4 !text-secondary">
                   <FaHandsHelping className="w-10 h-10 text-blue-300" />
-                 <h2 className="font-bold text-xl">Event Organizer</h2>
+                 <h2 className="font-bold text-xl">{t("eventOrganiser")}</h2>
                </div>
               <p className="text-gray-600 mb-3">
-                Assist in planning and organizing local events, parties, or community programs. Flexible part-time work with good exposure.
-               </p>
+                {t("eventOrganiserdesc")} </p>
               <p className="text-sm text-gray-400 mb-4">Part-time | Local | ₹300/day</p>
              {/* <button className="w-full !bg-secondary text-white font-semibold rounded-full py-2 hover:bg-pink-700 transition">
               Apply Now
@@ -350,7 +351,7 @@ const handleSubmit = (e) => {
                     : "bg-pink-600 text-white hover:bg-pink-700 active:scale-95"
                 }`}
               >
-                {appliedJobs.includes("Event Organizer") ? "Applied" : "Apply Now"}
+                {appliedJobs.includes("Tutor") ? t("applied") : t("apply")}
               </button>
            </motion.div>
         </div>
@@ -368,7 +369,7 @@ const handleSubmit = (e) => {
       </button>
 
       <h2 className="text-2xl font-bold mb-6">
-        Apply for {selectedJob}
+        {t("applyFor")} {selectedJob}
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -376,7 +377,7 @@ const handleSubmit = (e) => {
         <input
           type="text"
           name="name"
-          placeholder="Full Name"
+          placeholder={t("fullName")}
           value={formData.name}
           onChange={handleChange}
           required
@@ -460,14 +461,14 @@ const handleSubmit = (e) => {
             onClick={() => setSelectedJob(null)}
             className="px-6 py-2 bg-gray-400 text-white rounded-full"
           >
-            Cancel
+            {t("cancel")}
           </button>
 
           <button
             type="submit"
             className="px-6 py-2 bg-green-500 text-white rounded-full hover:bg-green-600 transition"
           >
-            Submit Application
+           {t("submit")}
           </button>
         </div>
 

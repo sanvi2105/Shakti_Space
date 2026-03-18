@@ -54,6 +54,7 @@ import LearningPage from "./components/Resources/LearningPage";
 import ResourcePage from "./components/Resources/ResourcePage"; // 👈 ADD
 import JobPortal from "./components/jobportal/jobportal";
 import SuccessStories from "./components/Successstories/Successstories";
+import "./i18n";
 
 
 const App = () => {

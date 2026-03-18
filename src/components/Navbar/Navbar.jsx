@@ -4,6 +4,7 @@ import { MdComputer, MdMenu } from "react-icons/md";
 import { motion } from "framer-motion";
 import ResponsiveMenu from "./ResponsiveMenu";
 import {Link} from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 
 
@@ -12,6 +13,7 @@ import {Link} from "react-router-dom";
 
 
 const Navbar = () => {
+    const { i18n } = useTranslation();
     const [isOpen,setIsOpen]=React.useState(false);
   return <>
   <nav>
@@ -49,10 +51,29 @@ const Navbar = () => {
 
         </div>
         {/*CTA  Button section */}
-        <div className="hidden lg:block space-x-6">
-            <Link to="/login" className="font-semibold">Login</Link>
-            <Link to="/register" className="text-white !bg-secondary font-semibold rounded-full px-6 py-2">Register</Link>
-        </div>
+        <div className="hidden lg:flex items-center gap-4">
+
+           {/* 🌍 Language Switch */}
+            <div className="flex gap-2">
+              <button 
+                onClick={() => i18n.changeLanguage("en")}
+                    className="px-2 py-1 border rounded hover:bg-gray-100"
+               >
+                  EN
+                </button>
+                <button 
+                    onClick={() => i18n.changeLanguage("hi")}
+                   className="px-2 py-1 border rounded hover:bg-gray-100"
+                >
+                  हिंदी
+                 </button>
+               </div>
+
+  {/* Auth Buttons */}
+  <Link to="/login" className="font-semibold">Login</Link>
+  <Link to="/register" className="text-white !bg-secondary font-semibold rounded-full px-6 py-2">Register</Link>
+
+</div>
 
     
         {/*Mobile Hamburger Menu section */}
