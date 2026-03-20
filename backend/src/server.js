@@ -35,7 +35,8 @@ import cors from "cors";
 import dbConnect from "./lib/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
-import progressRoutes from "./routes/progressRoutes.js"; // 👈 ADD THIS LINE
+import progressRoutes from "./routes/progressRoutes.js"; //  ADD THIS LINE
+import storyRoutes from "./routes/storyRoutes.js";
 
 dotenv.config();
 
@@ -48,7 +49,10 @@ dbConnect();
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
-app.use("/api/progress", progressRoutes); // 👈 ADD THIS LINE
+app.use("/api/progress", progressRoutes); //  ADD THIS LINE
+
+
+app.use("/api", storyRoutes);
 
 const PORT = process.env.PORT || 8001;
 app.listen(PORT, () => {
