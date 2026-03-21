@@ -45,7 +45,13 @@ const LoginPage = () => {
             const res = await axios.post("http://localhost:8001/api/auth/login", loginData);
             console.log("Login success: ", res.data);
             localStorage.setItem("token", res.data.token);
-            navigate("/dashboard");
+            localStorage.setItem("user", JSON.stringify(res.data.user));
+            const user = res.data.user;
+            if (user.role === "organisation") {
+                navigate("/org-dashboard");
+            } else {
+                navigate("/user-dashboard");
+            }
         } catch(err){
             console.log(err);
             const msg = err.response?.data?.message || "Login Failed";

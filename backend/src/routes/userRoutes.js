@@ -4,7 +4,7 @@ import authorizeRole from "../middleware/roleMiddleware.js";
 const router = express.Router();
 
 //only org can access
-router.get("/org", verifyToken, authorizeRole("org"), (req, res) => {
+router.get("/org", verifyToken, authorizeRole("organisation"), (req, res) => {
     res.json({message: "Welcome Organisation"});
 });
 

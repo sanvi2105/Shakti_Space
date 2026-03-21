@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({ //creating a schema/blueprint for the d
     },
     email: {
         type: String,
-        required: true,
+        // required: true,
         unique: true,
     },
     password: {

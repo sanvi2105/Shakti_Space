@@ -40,23 +40,51 @@ const JobPortal = () => {
   });
 };
 
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
 
-  setAppliedJobs((prev) => [...prev, selectedJob]);
-  setSelectedJob(null);
+  const token = localStorage.getItem("token");
+  if (!token) {
+    alert("Please login first");
+    return;
+  }
 
-  setFormData({
-    name: "",
-    phone: "",
-    email: "",
-    address: "",
-    experience: "",
-    skills: "",
-    availability: "",
-    whyHire: "",
-  });
+  try {
+    const res = await fetch("http://localhost:8001/api/applications/apply", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        ...formData,
+        jobTitle: selectedJob,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      setAppliedJobs((prev) => [...prev, selectedJob]);
+      setSelectedJob(null);
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        address: "",
+        experience: "",
+        skills: "",
+        availability: "",
+        whyHire: "",
+      });
+    } else {
+      alert(data.message);
+    }
+  } catch(e) {
+    console.log(e);
+  }
 };
+
   return (
     <div className="container py-10">
       <h1 className="text-3xl font-bold text-center mb-6 ">{t("workHub")}</h1>
@@ -128,7 +156,7 @@ const handleSubmit = (e) => {
                 : "bg-pink-600 text-white hover:bg-pink-700 active:scale-95"
             }`}
           >
-           {appliedJobs.includes("Tutor") ? t("applied") : t("apply")}
+           {appliedJobs.includes("Home Cook") ? t("applied") : t("apply")}
           </button>
         </motion.div>
 
@@ -195,7 +223,7 @@ const handleSubmit = (e) => {
                 : "bg-pink-600 text-white hover:bg-pink-700 active:scale-95"
             }`}
           >
-            {appliedJobs.includes("Tutor") ? t("applied") : t("apply")}
+            {appliedJobs.includes("Baking Helper") ? t("applied") : t("apply")}
           </button>
         </motion.div>
 
@@ -226,7 +254,7 @@ const handleSubmit = (e) => {
                 : "bg-pink-600 text-white hover:bg-pink-700 active:scale-95"
             }`}
           >
-            {appliedJobs.includes("Tutor") ? t("applied") : t("apply")}
+            {appliedJobs.includes("Packing Assistant") ? t("applied") : t("apply")}
           </button>
         </motion.div>
 
@@ -257,7 +285,7 @@ const handleSubmit = (e) => {
                 : "bg-pink-600 text-white hover:bg-pink-700 active:scale-95"
             }`}
           >
-            {appliedJobs.includes("Tutor") ? t("applied") : t("apply")}
+            {appliedJobs.includes("Delivery Person") ? t("applied") : t("apply")}
           </button>
         </motion.div>
       </div>
@@ -289,7 +317,7 @@ const handleSubmit = (e) => {
                         : "bg-pink-600 text-white hover:bg-pink-700 active:scale-95"
                     }`}
                   >
-                    {appliedJobs.includes("Tutor") ? t("applied") : t("apply")}
+                    {appliedJobs.includes("Freelance Designer") ? t("applied") : t("apply")}
                   </button>
                </motion.div>
  
@@ -321,7 +349,7 @@ const handleSubmit = (e) => {
                     : "bg-pink-600 text-white hover:bg-pink-700 active:scale-95"
                 }`}
               >
-                {appliedJobs.includes("Tutor") ? t("applied") : t("apply")}
+                {appliedJobs.includes("Social Media Assistant") ? t("applied") : t("apply")}
               </button>
             </motion.div>
 
@@ -351,7 +379,7 @@ const handleSubmit = (e) => {
                     : "bg-pink-600 text-white hover:bg-pink-700 active:scale-95"
                 }`}
               >
-                {appliedJobs.includes("Tutor") ? t("applied") : t("apply")}
+                {appliedJobs.includes("Event Organizer") ? t("applied") : t("apply")}
               </button>
            </motion.div>
         </div>
