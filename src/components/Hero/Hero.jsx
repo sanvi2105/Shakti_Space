@@ -29,7 +29,7 @@ const Hero = () => {
                   variants={SlideRight(0.8)}
                  initial="hidden"
                  animate="visible"
-                >SheSphere is a safe and inspiring space designed to help women discover opportunities, build skills, 
+                >ShaktiSpace is a safe and inspiring space designed to help women discover opportunities, build skills, 
                 and connect with supportive communities that believe in their potential.
                 </motion.p>
                 {/**button section */}
