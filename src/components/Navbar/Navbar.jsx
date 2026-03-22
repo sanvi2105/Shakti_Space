@@ -53,7 +53,7 @@ const Navbar = () => {
         {/*CTA  Button section */}
         <div className="hidden lg:flex items-center gap-4">
 
-           {/* 🌍 Language Switch */}
+           {/*  Language Switch */}
             <div className="flex gap-2">
               <button 
                 onClick={() => i18n.changeLanguage("en")}

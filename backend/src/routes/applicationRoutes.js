@@ -1,9 +1,11 @@
 import express from "express";
-import verifyToken from "../middleware/authMiddleware.js";
-import {applyJob} from "../controllers/applicationController.js";
+import {applyJob,getUserApplication} from "../controllers/applicationController.js";
+import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-router.post("/apply", verifyToken, applyJob);
+router.post("/apply", protect, applyJob);
+router.get("/my",protect,getUserApplication);
+
 
 export default router;

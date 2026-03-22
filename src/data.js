@@ -24,7 +24,7 @@ export const NavbarMenu=[
     },
     {
         id:5,
-        title:"Contact us",
-        link:"#",
+        title:"Dashboard",
+        link:"/dashboard",
     },
 ];

@@ -1,11 +1,11 @@
 
 import express from "express";
 import { getProgress, markComplete } from "../controllers/progressController.js";
-import verifyToken from "../middleware/authMiddleware.js"; // your existing middleware ✅
+import { protect } from "../middleware/authMiddleware.js"; // your existing middleware ✅
 
 const router = express.Router();
 
-router.get("/", verifyToken, getProgress);             // GET  /api/progress
-router.post("/complete", verifyToken, markComplete);   // POST /api/progress/complete
+router.get("/", protect, getProgress);             // GET  /api/progress
+router.post("/complete", protect, markComplete);   // POST /api/progress/complete
 
 export default router;

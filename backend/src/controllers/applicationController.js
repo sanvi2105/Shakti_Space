@@ -46,3 +46,13 @@ export const applyJob = async (req, res) => { //req from frontend, response sent
         res.status(500).json({message: "Server error"});
     }
 };
+
+export const getUserApplication=async(req,res)=>{
+        try{
+           const userId=req.user.id; //extracting user's logged in id
+           const applications=await Application.find({user:userId});
+           res.json(applications);
+        }catch(err){
+            res.status(500).json({message:"Error has occured in fetching application"});
+        }
+};
