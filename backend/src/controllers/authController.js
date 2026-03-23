@@ -45,7 +45,14 @@ const login = async (req, res) => {
         );                                  //jwt.sign(payload[data stored inside token, used to identify user], 
                                             //secret, options)
 
-        res.status(200).json({token});
+        res.status(200).json({
+            token,
+            user: {
+                id: user._id,
+                username: user.username,
+                role: user.role
+            }
+        });
     } catch(e){
         res
             .status(500)

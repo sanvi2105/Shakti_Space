@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavbarMenu } from "../../data.js";
 import { MdComputer, MdMenu } from "react-icons/md";
 import { motion } from "framer-motion";
@@ -15,6 +15,14 @@ import { useTranslation } from "react-i18next";
 const Navbar = () => {
     const { i18n } = useTranslation();
     const [isOpen,setIsOpen]=React.useState(false);
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
+    }, []);
   return <>
   <nav>
   <motion.div
@@ -70,8 +78,24 @@ const Navbar = () => {
                </div>
 
   {/* Auth Buttons */}
-  <Link to="/login" className="font-semibold">Login</Link>
-  <Link to="/register" className="text-white !bg-secondary font-semibold rounded-full px-6 py-2">Register</Link>
+  {/* <Link to="/login" className="font-semibold">Login</Link>
+  <Link to="/register" className="text-white !bg-secondary font-semibold rounded-full px-6 py-2">Register</Link> */}
+  {user ? (
+        <div className="w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center cursor-pointer">
+            <Link to={user?.role === "organisation" ? "/org-dashboard" : "/user-dashboard"}>
+                <img 
+                    src="/image.png" 
+                    alt="profile"
+                    className="w-10 h-10 rounded-full object-cover"
+                />
+            </Link>
+        </div>
+    ) : (
+        <>
+            <Link to="/login" className="font-semibold">Login</Link>
+            <Link to="/register" className="text-white !bg-secondary font-semibold rounded-full px-6 py-2">Register</Link>
+        </>
+    )}
 
 </div>
 

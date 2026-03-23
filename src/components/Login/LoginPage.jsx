@@ -52,6 +52,7 @@ const LoginPage = () => {
             } else {
                 navigate("/user-dashboard");
             }
+            window.location.reload();
         } catch(err){
             console.log(err);
             const msg = err.response?.data?.message || "Login Failed";

@@ -7,7 +7,7 @@ import cors from "cors";
 import dbConnect from "./lib/db.js"; //import db connection
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
-import progressRoutes from "./routes/progressRoutes.js"; //  ADD THIS LINE
+import progressRoutes from "./routes/progressRoutes.js"; 
 import storyRoutes from "./routes/storyRoutes.js";
 import applicationRoutes from "./routes/applicationRoutes.js"; 
 

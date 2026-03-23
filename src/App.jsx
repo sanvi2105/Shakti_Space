@@ -83,6 +83,7 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/resource"  element={<LearningPage />} />
         <Route path="/resource/:moduleId" element={<ResourcePage />} />
+        <Route path="/user-dashboard" element={<Dashboard />} />
       </Routes>
     </main>
   );
