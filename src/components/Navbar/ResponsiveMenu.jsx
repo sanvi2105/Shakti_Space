@@ -1,7 +1,7 @@
 import React from 'react'
 import {motion, AnimatePresence } from "framer-motion";
 
-const ResponsiveMenu = ({isOpen}) => {
+const ResponsiveMenu = ({isOpen = false}) => {
   return <AnimatePresence mode="wait">
     {
         isOpen && <motion.div
@@ -12,7 +12,7 @@ const ResponsiveMenu = ({isOpen}) => {
           className="absolute top-20 left-0 w-full h-screen z-20 lg:hidden"
         
         >
-            <div className="text-xl font-semibold uppercase bg-primary text white py-10 m-6 rounded-3xl cursor-pointer">
+            <div className="text-xl font-semibold uppercase bg-primary text-white py-10 m-6 rounded-3xl cursor-pointer">
                 <ul className="flex flex-col justify-center items-center gap-10">
                     <li>Home</li>
                     <li>About</li>

@@ -22,11 +22,28 @@ const Dashboard = () => {
           Authorization: `Bearer ${token}`,
         },
       });
+
+      if (!res.ok) {
+        console.log("API Error:", res.status);
+        setApplications([]); // fallback
+        return;
+      }
+
       const data = await res.json();
-      setApplications(data);
-    } catch (err) {
-      console.log(err);
-    }
+    //   setApplications(data);
+    // } catch (err) {
+    //   console.log(err);
+
+        if (Array.isArray(data)) {
+          setApplications(data);
+        } else {
+          console.log("Unexpected response:", data);
+          setApplications([]);
+        }
+      } catch (err) {
+        console.log(err);
+        setApplications([]);
+      }
   };
 
   /*  STATS */
