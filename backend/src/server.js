@@ -1,38 +1,67 @@
 import { setServers } from "node:dns/promises";
 setServers(["1.1.1.1", "8.8.8.8"]);
 
-import express from "express"; //to import express
-import dotenv from "dotenv"; 
+import express from "express";
+import dotenv from "dotenv";
 import cors from "cors";
-import dbConnect from "./lib/db.js"; //import db connection
+
+import dbConnect from "./lib/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
-import progressRoutes from "./routes/progressRoutes.js"; //  ADD THIS LINE
+import progressRoutes from "./routes/progressRoutes.js";
 import storyRoutes from "./routes/storyRoutes.js";
-import applicationRoutes from "./routes/applicationRoutes.js"; 
+import applicationRoutes from "./routes/applicationRoutes.js";
 
-dotenv.config(); //read .env file
+dotenv.config();
 
-const app = express(); // create my server app using express
+const app = express();
 
-//Middleware
-app.use(cors({origin : "http://localhost:5173", credentials: true})); 
-app.use(express.json()); //data(POST/PUT body) sent to server in JSON format, understand it
+// ✅ CORS FIX (handles multiple ports like 5173, 5175, etc.)
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5175",
+  "http://localhost:5176"
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // allow requests with no origin (like Postman)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS not allowed"));
+    }
+  },
+  credentials: true
+}));
+
+// Middleware
+app.use(express.json());
+
+// DB Connection
 dbConnect();
 
-//Routes
+// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/progress", progressRoutes);
-app.use("/api", storyRoutes);
-app.use("/api/progress", progressRoutes);
+app.use("/api/stories", storyRoutes);
 app.use("/api/applications", applicationRoutes);
 
-//Starting the server
-const PORT = process.env.PORT || 8002;
-app.listen(PORT, () => {
-    console.log(`Server is running at ${PORT}`);
+// Test Route (optional but useful)
+app.get("/", (req, res) => {
+  res.send("API is running...");
 });
+
+// Server Start
+const PORT = process.env.PORT || 8002;
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server is running on http://localhost:${PORT}`);
+});
+
 
 // import { setServers } from "node:dns/promises";
 // setServers(["1.1.1.1", "8.8.8.8"]);

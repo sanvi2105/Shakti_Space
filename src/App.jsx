@@ -37,6 +37,7 @@
 // };
 // export default App;
 import React from "react";
+import { useLocation } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
@@ -54,13 +55,17 @@ import LearningPage from "./components/Resources/LearningPage";
 import ResourcePage from "./components/Resources/ResourcePage"; // 👈 ADD
 import JobPortal from "./components/jobportal/jobportal";
 import SuccessStories from "./components/Successstories/Successstories";
+import OrgDashboard from "./components/OrgDashboard/OrgDashboard";
 import "./i18n";
 
 
 const App = () => {
+   const location = useLocation();
+    const hideNavbar = location.pathname === "/org-dashboard";
+
   return (
     <main className="overflow-x-hidden">
-      <Navbar />
+      {!hideNavbar && <Navbar />}
       <Routes>
         <Route
           path="/"
@@ -81,8 +86,10 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/org-dashboard" element={<OrgDashboard />} />
         <Route path="/resource"  element={<LearningPage />} />
         <Route path="/resource/:moduleId" element={<ResourcePage />} />
+        
       </Routes>
     </main>
   );

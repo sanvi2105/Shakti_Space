@@ -43,19 +43,13 @@ const JobPortal = () => {
 const handleSubmit = async (e) => {
   e.preventDefault();
 
-  const token = localStorage.getItem("token");
-  if (!token) {
-    alert("Please login first");
-    return;
-  }
-
   try {
-    const res = await fetch("http://localhost:8001/api/applications/apply", {
+    const res = await fetch("http://localhost:8002/api/applications", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
       },
+      credentials: "include",
       body: JSON.stringify({
         ...formData,
         jobTitle: selectedJob,
@@ -65,8 +59,11 @@ const handleSubmit = async (e) => {
     const data = await res.json();
 
     if (res.ok) {
+      alert("Application submitted ✅");
+
       setAppliedJobs((prev) => [...prev, selectedJob]);
       setSelectedJob(null);
+
       setFormData({
         name: "",
         phone: "",
@@ -80,7 +77,7 @@ const handleSubmit = async (e) => {
     } else {
       alert(data.message);
     }
-  } catch(e) {
+  } catch (e) {
     console.log(e);
   }
 };

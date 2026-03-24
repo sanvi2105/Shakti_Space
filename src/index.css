@@ -8,6 +8,11 @@
     hover:!shadow-xl duration-300;
    }
 }
+:root {
+  --primary: #14b8a6;      /* teal */
+  --primary-dark: #0f766e;
+  --bg-light: #f0fdfa;     /* light teal background */
+}
 
 body{
   font-family:"Poppins,sans-serif";
