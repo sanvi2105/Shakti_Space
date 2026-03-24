@@ -89,9 +89,9 @@ const handleSubmit = async (e) => {
            {t("exploreJobs")}</h1>
 
 
-      {/* First row */}
+      
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Tutor */}
+        
 
          
         <motion.div 
@@ -125,7 +125,7 @@ const handleSubmit = async (e) => {
         </button>
         </motion.div>
 
-        {/* Home Cook */}
+        
         <motion.div 
          variants={SlideLeft(0.6)}   // adjust 
          initial="hidden"
@@ -157,7 +157,7 @@ const handleSubmit = async (e) => {
           </button>
         </motion.div>
 
-        {/* House Helper */}
+        
         <motion.div 
          variants={SlideLeft(0.9)}   // adjust 
          initial="hidden"
@@ -191,7 +191,7 @@ const handleSubmit = async (e) => {
         </motion.div>
       </div>
 
-      {/* Second row */}
+      
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
         {/* Baking Helper */}
         <motion.div 

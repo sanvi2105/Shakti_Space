@@ -17,14 +17,14 @@ export default function Analytics({ applications, jobs }) {
   const rejected = applications.filter(a => a.status === "rejected").length;
   const pending = applications.filter(a => a.status === "pending").length;
 
-  // 📊 Pie Data
+  // Pie Data
   const pieData = [
     { name: "Accepted", value: accepted },
     { name: "Rejected", value: rejected },
     { name: "Pending", value: pending },
   ];
 
-  // 📈 Bar Data
+  // Bar Data
   const barData = [
     {
       name: "Platform Stats",
@@ -37,7 +37,7 @@ export default function Analytics({ applications, jobs }) {
     <div>
       <h2 className="text-xl font-semibold mb-6">Analytics</h2>
 
-      {/* 🔢 Summary Cards */}
+      {/*  Summary Cards */}
       <div className="grid grid-cols-3 gap-4 mb-8">
         <div className="bg-white p-4 shadow rounded">
           <h3 className="text-lg font-bold">{jobs.length}</h3>
@@ -55,7 +55,7 @@ export default function Analytics({ applications, jobs }) {
         </div>
       </div>
 
-      {/* 📊 Charts */}
+      {/*  Charts */}
       <div className="grid grid-cols-2 gap-6">
         
         {/* PIE CHART */}

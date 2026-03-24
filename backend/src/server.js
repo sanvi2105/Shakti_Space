@@ -16,7 +16,7 @@ dotenv.config();
 
 const app = express();
 
-// ✅ CORS FIX (handles multiple ports like 5173, 5175, etc.)
+//  CORS FIX (handles multiple ports like 5173, 5175, etc.)
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5175",

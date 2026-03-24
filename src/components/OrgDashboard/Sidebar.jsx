@@ -1,13 +1,13 @@
 export default function Sidebar({ setActiveTab }) {
   return (
-    <div className="w-64 min-h-screen bg-gradient-to-b from-teal-600 to-teal-500 text-white p-6 shadow-xl flex flex-col">
+    <div className="w-64 min-h-screen bg-gradient-to-b from-teal-800 to-teal-700 text-white p-6 shadow-xl flex flex-col">
 
-      {/* Logo / Title */}
+      
       <h2 className="text-2xl font-bold mb-10 tracking-wide">
         Org Panel
       </h2>
 
-      {/* Menu */}
+     
       <ul className="space-y-3">
 
         <li
@@ -39,7 +39,7 @@ export default function Sidebar({ setActiveTab }) {
         </li>
       </ul>
 
-      {/* Bottom Section (Nice Touch) */}
+      
       <div className="mt-auto pt-10 text-sm text-white/80">
         <p>🌱 Empowering Women</p>
         <p className="text-xs mt-1"></p>

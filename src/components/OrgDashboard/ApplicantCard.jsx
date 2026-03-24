@@ -15,7 +15,7 @@ export default function ApplicantCard({ applicant, setApplications }) {
 
       const updated = await res.json();
 
-      // 🔥 Update UI with backend response
+      
       setApplications((prev) =>
         prev.map((app) =>
           app._id === updated._id ? updated : app
@@ -29,12 +29,12 @@ export default function ApplicantCard({ applicant, setApplications }) {
   return (
     <div className="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition border border-gray-100 hover:border-teal-300">
       
-      {/* Top Section */}
+     
       <div className="flex justify-between items-start">
         
-        {/* Name + Avatar */}
+      
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-teal-500 text-white flex items-center justify-center font-bold">
+          <div className="w-10 h-10 rounded-full bg-teal-700 text-white flex items-center justify-center font-bold">
             {applicant.name?.charAt(0)}
           </div>
 
@@ -46,7 +46,7 @@ export default function ApplicantCard({ applicant, setApplications }) {
           </div>
         </div>
 
-        {/* Status Badge */}
+       
         <span
           className={`px-3 py-1 rounded-full text-xs font-semibold capitalize ${
             applicant.status === "accepted"
@@ -60,7 +60,7 @@ export default function ApplicantCard({ applicant, setApplications }) {
         </span>
       </div>
 
-      {/* Info Section */}
+     
       <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
         
         <div className="bg-gray-50 p-3 rounded-lg">
@@ -79,15 +79,15 @@ export default function ApplicantCard({ applicant, setApplications }) {
 
       </div>
 
-      {/* Divider */}
+    
       <div className="border-t my-4"></div>
 
-      {/* Buttons */}
+   
       <div className="flex gap-3">
         
         <button
           onClick={() => updateStatus("accepted")}
-          className="flex-1 bg-teal-500 text-white py-2 rounded-full text-sm font-medium hover:bg-teal-600 transition active:scale-95 shadow-sm"
+          className="flex-1 bg-teal-800 text-white py-2 rounded-full text-sm font-medium hover:bg-teal-600 transition active:scale-95 shadow-sm"
         >
           ✔ Accept
         </button>

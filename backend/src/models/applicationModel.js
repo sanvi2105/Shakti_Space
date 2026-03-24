@@ -16,7 +16,7 @@ const applicationSchema = new mongoose.Schema(
     availability: String,
     whyHire: String,
 
-    // 🔥 IMPORTANT (for your dashboard)
+  
     status: {
       type: String,
       enum: ["pending", "accepted", "rejected"],

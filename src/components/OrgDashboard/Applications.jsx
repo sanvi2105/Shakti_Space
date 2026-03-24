@@ -7,7 +7,7 @@ export default function Applications({ applications, setApplications }) {
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
 
-  // 🔥 FETCH DATA FROM BACKEND
+  
   useEffect(() => {
     const fetchApplications = async () => {
       try {
@@ -40,12 +40,12 @@ export default function Applications({ applications, setApplications }) {
   return (
     <div className="bg-white rounded-2xl shadow-lg p-6">
       
-      {/* Title */}
-      <h2 className="text-2xl font-bold mb-6 text-teal-700">
+      
+      <h2 className="text-2xl font-bold mb-6 text-teal-800">
         Applications
       </h2>
 
-      {/* Filters */}
+      
       <div className="flex gap-4 mb-6 flex-wrap">
         
         <select
@@ -62,13 +62,13 @@ export default function Applications({ applications, setApplications }) {
         <input
           type="text"
           placeholder="🔍 Search by name..."
-          className="border border-teal-300 focus:ring-2 focus:ring-teal-400 outline-none p-2 rounded-lg w-64"
+          className="border border-teal-300 focus:ring-2 focus:ring-teal-600 outline-none p-2 rounded-lg w-64"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
 
-      {/* Applications List */}
+      
       {filteredApplications.length > 0 ? (
         <div className="space-y-4">
           {filteredApplications.map((app) => (
