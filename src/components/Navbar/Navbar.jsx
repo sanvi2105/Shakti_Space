@@ -18,11 +18,19 @@ const Navbar = () => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        const storedUser = localStorage.getItem("user");
-        if (storedUser) {
+    const storedUser = localStorage.getItem("user");
+
+    if (storedUser && storedUser !== "undefined") {
+        try {
             setUser(JSON.parse(storedUser));
+        } catch (error) {
+            console.error("Invalid JSON in localStorage:", error);
+            setUser(null);
         }
-    }, []);
+    } else {
+        setUser(null);
+    }
+  }, []);
   return <>
   <nav>
   <motion.div
