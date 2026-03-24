@@ -64,6 +64,7 @@ const WhyChooseUs = () => {
                     WhyChooseData.map((item) => {
                         return (
                             <motion.div 
+                             key={item.id}
                              variants={SlideLeft(item.delay)}
                              initial="hidden"
                              whileInView={"visible"}

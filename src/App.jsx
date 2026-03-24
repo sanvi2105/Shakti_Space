@@ -89,7 +89,11 @@ const App = () => {
         <Route path="/org-dashboard" element={<OrgDashboard />} />
         <Route path="/resource"  element={<LearningPage />} />
         <Route path="/resource/:moduleId" element={<ResourcePage />} />
+<<<<<<< HEAD
         
+=======
+        <Route path="/user-dashboard" element={<Dashboard />} />
+>>>>>>> 07ec24fd30201fedb91dfe69640bfcd3c0201a36
       </Routes>
     </main>
   );
