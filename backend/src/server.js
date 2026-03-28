@@ -1,20 +1,20 @@
 import { setServers } from "node:dns/promises";
 setServers(["1.1.1.1", "8.8.8.8"]);
 
-import express from "express";
+import express from "express"; //to import express
 import dotenv from "dotenv";
 import cors from "cors";
 
-import dbConnect from "./lib/db.js";
+import dbConnect from "./lib/db.js"; //import db connection
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import progressRoutes from "./routes/progressRoutes.js";
 import storyRoutes from "./routes/storyRoutes.js";
 import applicationRoutes from "./routes/applicationRoutes.js";
 
-dotenv.config();
+dotenv.config(); //read .env file
 
-const app = express();
+const app = express(); // create my server app using express
 
 //  CORS FIX (handles multiple ports like 5173, 5175, etc.)
 const allowedOrigins = [
@@ -37,13 +37,13 @@ app.use(cors({
   credentials: true
 }));
 
-// Middleware
-app.use(express.json());
+//Middleware
+app.use(express.json()); //data(POST/PUT body) sent to server in JSON format, understand it
 
 // DB Connection
 dbConnect();
 
-// Routes
+//Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/progress", progressRoutes);
@@ -55,13 +55,48 @@ app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
-// Server Start
+//Starting the server
 const PORT = process.env.PORT || 8002;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
 
+// import { setServers } from "node:dns/promises";
+// setServers(["1.1.1.1", "8.8.8.8"]);
+
+// import express from "express"; //to import express
+// import dotenv from "dotenv"; 
+// import cors from "cors";
+// import dbConnect from "./lib/db.js"; //import db connection
+// import authRoutes from "./routes/authRoutes.js";
+// import userRoutes from "./routes/userRoutes.js";
+// import progressRoutes from "./routes/progressRoutes.js"; //  ADD THIS LINE
+// import storyRoutes from "./routes/storyRoutes.js";
+// import applicationRoutes from "./routes/applicationRoutes.js"; 
+
+// dotenv.config(); //read .env file
+
+// const app = express(); // create my server app using express
+
+// //Middleware
+// app.use(cors({origin : "http://localhost:5173", credentials: true})); 
+// app.use(express.json()); //data(POST/PUT body) sent to server in JSON format, understand it
+// dbConnect();
+
+// //Routes
+// app.use("/api/auth", authRoutes);
+// app.use("/api/users", userRoutes);
+// app.use("/api/progress", progressRoutes);
+// app.use("/api", storyRoutes);
+// app.use("/api/progress", progressRoutes);
+// app.use("/api/applications", applicationRoutes);
+
+// //Starting the server
+// const PORT = process.env.PORT || 8002;
+// app.listen(PORT, () => {
+//     console.log(`Server is running at ${PORT}`);
+// });
 
 // import { setServers } from "node:dns/promises";
 // setServers(["1.1.1.1", "8.8.8.8"]);

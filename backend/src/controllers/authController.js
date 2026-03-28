@@ -14,9 +14,20 @@ const register = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10); //hash pass before saving, so they arent saved in plain text
         const newUser = new User({username,email, password: hashedPassword, role}); //creating new user using User Model
         await newUser.save(); //save user to mongodb
+        const token = jwt.sign(
+            { id: newUser._id, role: newUser.role },
+            process.env.JWT_SECRET,
+            { expiresIn: "1h" }
+        );
         res                   //sends response back
             .status(201)      //201-http status for successful creation
-            .json({message: `User registered with username ${username}`}); //senda back json response
+            .json({
+                token,
+                user: {
+                    id: newUser._id,
+                    username: newUser.username,
+                    role: newUser.role
+            }}); 
     } catch(e){
         console.error("Auth error:", e);
         res

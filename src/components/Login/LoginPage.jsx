@@ -42,7 +42,7 @@ const LoginPage = () => {
         setErrors({});
 
         try{
-            const res = await axios.post("http://localhost:8002/api/auth/login", loginData);
+            const res = await axios.post("http://localhost:8001/api/auth/login", loginData);
             console.log("Login success: ", res.data);
             localStorage.setItem("token", res.data.token);
             localStorage.setItem("user", JSON.stringify(res.data.user));
@@ -50,7 +50,7 @@ const LoginPage = () => {
             if (user.role === "organisation") {
                 navigate("/org-dashboard");
             } else {
-                navigate("/user-dashboard");
+                navigate("/dashboard");
             }
             window.location.reload();
         } catch(err){

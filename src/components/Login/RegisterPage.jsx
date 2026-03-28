@@ -48,10 +48,22 @@ const RegisterPage = () => {
 
     try {
       // POST request to backend
-      await axios.post("http://localhost:8002/api/auth/register", registerData);
+      const res = await axios.post("http://localhost:8001/api/auth/register", registerData);
 
       // Success → redirect to login
-      navigate("/dashboard");
+      console.log("Register success:", res.data);
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+
+      const user = res.data.user;
+
+      if (user.role === "organisation") {
+        navigate("/org-dashboard");
+      } else {
+        navigate("/dashboard");
+      }
+
+      window.location.reload();
     } catch (err) {
       console.log(err);
 

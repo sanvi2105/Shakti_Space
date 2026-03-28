@@ -90,7 +90,7 @@ const Navbar = () => {
   <Link to="/register" className="text-white !bg-secondary font-semibold rounded-full px-6 py-2">Register</Link> */}
   {user ? (
         <div className="w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center cursor-pointer">
-            <Link to={user?.role === "organisation" ? "/org-dashboard" : "/user-dashboard"}>
+            <Link to={user?.role === "organisation" ? "/org-dashboard" : "/dashboard"}>
                 <img 
                     src="/image.png" 
                     alt="profile"
