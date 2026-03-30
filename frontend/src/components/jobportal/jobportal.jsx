@@ -46,6 +46,10 @@ const handleSubmit = async (e) => {
   try {
     const token = localStorage.getItem("token");
     console.log("TOKEN:", token); 
+       console.log("Submitting job application:", {
+        ...formData,
+        jobTitle: selectedJob,
+    });
 
     const res = await fetch("/api/applications", {
       method: "POST",
@@ -61,7 +65,20 @@ const handleSubmit = async (e) => {
     });
 
     const data = await res.json();
-
+    if (res.ok) {
+      alert("Application submitted ✅");
+      setAppliedJobs((prev) => [...prev, selectedJob]);
+      setSelectedJob(null); // reset selection
+      setFormData({
+      name: "", phone: "", email: "", address: "",
+      experience: "", skills: "", availability: "", whyHire: ""
+       });
+      setShowForm(false); // close form
+     } else {
+      const data = await res.json();
+      alert(data.message);
+    }
+    /*
     if (res.ok) {
       alert("Application submitted ✅");
 
@@ -81,6 +98,7 @@ const handleSubmit = async (e) => {
     } else {
       alert(data.message);
     }
+      */
   } catch (e) {
     console.log(e);
   }
