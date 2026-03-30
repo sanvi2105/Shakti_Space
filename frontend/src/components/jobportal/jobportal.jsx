@@ -44,16 +44,20 @@ const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
+    const token = localStorage.getItem("token");
+    console.log("TOKEN:", token); 
+
     const res = await fetch("/api/applications", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+       "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,   
       },
-      credentials: "include",
-      body: JSON.stringify({
+       credentials: "include",
+       body: JSON.stringify({
         ...formData,
-        jobTitle: selectedJob,
-      }),
+       jobTitle: selectedJob,
+       }),
     });
 
     const data = await res.json();
