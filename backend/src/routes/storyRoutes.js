@@ -3,8 +3,8 @@ import { addStory,getStories} from "../controllers/storyController.js";
 
 const router = express.Router();
 
-router.post("/stories", addStory);
-router.get("/stories", getStories)
+router.post("/", addStory);
+router.get("/", getStories)
 
 
 export default router;
