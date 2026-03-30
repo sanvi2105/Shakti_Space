@@ -66,10 +66,9 @@ app.get("/api/test", (req, res) => {
 
 const __dirname = path.resolve();
 
-app.use(express.static(path.join(__dirname, "../dist")));
-
+app.use(express.static(path.join(__dirname, "dist"))); 
 app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(__dirname, "../dist/index.html"));
+  res.sendFile(path.join(__dirname, "dist/index.html"));
 });
 
 const PORT = process.env.PORT || 8002;
