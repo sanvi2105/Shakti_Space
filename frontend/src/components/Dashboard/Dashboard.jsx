@@ -19,14 +19,16 @@ const Dashboard = () => {
     try {
       const res = await fetch("/api/applications/my", {
         headers: {
-          Authorization: `Bearer ${token}`,
-        },
+           Authorization: `Bearer ${token}`,
+             },
+           credentials: "include",
       });
 
       if (!res.ok) {
-        console.log("API Error:", res.status);
-        setApplications([]); // fallback
-        return;
+        const errorData = await res.text();
+        console.log("API Error:", res.status, errorData);
+        setApplications([]);
+          return;
       }
 
       const data = await res.json();
@@ -36,9 +38,11 @@ const Dashboard = () => {
 
         if (Array.isArray(data)) {
           setApplications(data);
+        } else if (data.applications) {
+          setApplications(data.applications);
         } else {
-          console.log("Unexpected response:", data);
-          setApplications([]);
+           console.log("Unexpected response:", data);
+           setApplications([]);
         }
       } catch (err) {
         console.log(err);

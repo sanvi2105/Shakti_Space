@@ -272,16 +272,28 @@ const SuccessStories = () => {
   e.preventDefault();
 
   try {
-    const res = await fetch("/api/stories", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const token = localStorage.getItem("token");
+
+     const res = await fetch("/api/stories", {
+     method: "POST",
+     headers: {
+      "Content-Type": "application/json",
+       Authorization: `Bearer ${token}`,
       },
+      credentials: "include",
       body: JSON.stringify(formData),
     });
 
+    if (!res.ok) {
+  const err = await res.text();
+  console.log("POST ERROR:", res.status, err);
+  return;
+}
+
     const data = await res.json();
     console.log("POST SUCCESS:", data);
+
+    console.log("FORM DATA:", formData);
 
     //  FORCE fresh fetch
     await fetchStories();
