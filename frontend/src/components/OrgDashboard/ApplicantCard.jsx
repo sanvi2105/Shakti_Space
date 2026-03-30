@@ -1,4 +1,4 @@
-const API = "http://localhost:8002/api/applications";
+const API = "/api/applications";
 
 export default function ApplicantCard({ applicant, setApplications }) {
   

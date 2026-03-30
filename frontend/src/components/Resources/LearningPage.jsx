@@ -1,14 +1,14 @@
 // src/components/Resources/LearningPage.jsx
 
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // 👈 ADDED
+import { useNavigate } from 'react-router-dom'; //  ADDED
 
-const API = "http://localhost:8001"; // your backend
+const API = ""; // your backend
 
 // ─── Data — IDs changed to strings to match backend ──────────────────────────
 const modules = [
   {
-    id: 'stock-market',          // 👈 CHANGED from 1
+    id: 'stock-market',          //  CHANGED from 1
     title: 'What is the Stock Market?',
     description: 'Learn the basics of how stock markets work and why they matter.',
     level: 'beginner',
@@ -17,7 +17,7 @@ const modules = [
     icon: 'check-circle',
   },
   {
-    id: 'pe-ratios',             // 👈 CHANGED from 2
+    id: 'pe-ratios',             //  CHANGED from 2
     title: 'Understanding P/E Ratios',
     description: 'Dive into price-to-earnings ratios and what they tell investors.',
     level: 'beginner',
@@ -26,7 +26,7 @@ const modules = [
     icon: 'check-circle',
   },
   {
-    id: 'candlestick-charts',    // 👈 CHANGED from 3
+    id: 'candlestick-charts',    //  CHANGED from 3
     title: 'Reading Candlestick Charts',
     description: 'Master the art of technical analysis with candlestick patterns.',
     level: 'intermediate',
@@ -35,7 +35,7 @@ const modules = [
     icon: 'play',
   },
   {
-    id: 'diversification',       // 👈 CHANGED from 4
+    id: 'diversification',       // CHANGED from 4
     title: 'Diversification Strategies',
     description: 'Learn how to build a resilient portfolio through diversification.',
     level: 'intermediate',
@@ -44,7 +44,7 @@ const modules = [
     icon: 'book',
   },
   {
-    id: 'options-trading',       // 👈 CHANGED from 5
+    id: 'options-trading',       //  CHANGED from 5
     title: 'Options Trading Basics',
     description: 'Introduction to calls, puts, and options strategies.',
     level: 'advanced',
@@ -53,7 +53,7 @@ const modules = [
     icon: 'play',
   },
   {
-    id: 'market-quiz',           // 👈 CHANGED from 6
+    id: 'market-quiz',           //  CHANGED from 6
     title: 'Market Fundamentals Quiz',
     description: 'Test your knowledge of market basics and trading concepts.',
     level: 'beginner',
@@ -112,13 +112,13 @@ function ModuleIcon({ type, completed }) {
 }
 
 // ─── Module Card ──────────────────────────────────────────────────────────────
-function ModuleCard({ module, completed }) {   // 👈 completed now comes as a prop
+function ModuleCard({ module, completed }) {   //  completed now comes as a prop
   const [hovered, setHovered] = useState(false);
-  const navigate = useNavigate();              // 👈 ADDED
+  const navigate = useNavigate();              //  ADDED
   const lvl = levelConfig[module.level];
 
   return (
-    // 👇 Changed <a href> to <div onClick={() => navigate(...)>
+    //  Changed <a href> to <div onClick={() => navigate(...)>
     <div
       onClick={() => navigate(`/resource/${module.id}`)}
       onMouseEnter={() => setHovered(true)}
@@ -187,7 +187,7 @@ function ModuleCard({ module, completed }) {   // 👈 completed now comes as a 
           </svg>
           {module.duration}
         </span>
-        {/* 👇 XP colour changes when completed */}
+        {/*  XP colour changes when completed */}
         <span style={{ color: completed ? '#1A9E8F' : '#E91E8C', fontWeight: 700, fontSize: 13.5 }}>
           {completed ? `✓ +${module.xp} XP` : `+${module.xp} XP`}
         </span>
@@ -214,16 +214,16 @@ function SkeletonCard() {
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function LearningCenter() {
   const [activeFilter, setActiveFilter]     = useState('All');
-  const [completedModules, setCompletedModules] = useState([]); // 👈 from API
-  const [xpEarned, setXpEarned]             = useState(0);      // 👈 from API
-  const [loading, setLoading]               = useState(true);   // 👈 loading state
+  const [completedModules, setCompletedModules] = useState([]); //  from API
+  const [xpEarned, setXpEarned]             = useState(0);      //  from API
+  const [loading, setLoading]               = useState(true);   //  loading state
 
   const filters = ['All', 'Beginner', 'Intermediate', 'Advanced'];
   const totalModules    = modules.length;
   const completedCount  = completedModules.length;
   const progressPercent = Math.round((completedCount / totalModules) * 100);
 
-  // 👇 Fetch real progress from backend when page loads
+  //  Fetch real progress from backend when page loads
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) { setLoading(false); return; }
@@ -255,7 +255,7 @@ export default function LearningCenter() {
             <h1 style={{ fontSize: 30, fontWeight: 800, color: '#1A1A2E', margin: 0, letterSpacing: '-0.02em' }}>
               Learning Center
             </h1>
-            {/* 👇 Shows real count from API */}
+            {/*  Shows real count from API */}
             <p style={{ color: '#9CA3AF', fontSize: 14, marginTop: 4, fontWeight: 500 }}>
               {loading ? 'Loading...' : `${completedCount}/${totalModules} modules completed`}
             </p>
@@ -265,7 +265,7 @@ export default function LearningCenter() {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E91E8C" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
             </svg>
-            {/* 👇 Shows real XP from API */}
+            {/*  Shows real XP from API */}
             <span style={{ color: '#E91E8C' }}>{xpEarned} XP</span>
             <span style={{ color: '#9CA3AF', fontWeight: 400 }}>earned</span>
           </div>
@@ -273,7 +273,7 @@ export default function LearningCenter() {
 
         {/* ── Progress Bar ── */}
         <div style={{ width: '100%', height: 9, background: '#E5E7EB', borderRadius: 99, overflow: 'hidden', marginTop: 28 }}>
-          {/* 👇 Width driven by real API data */}
+          {/*  Width driven by real API data */}
           <div style={{ height: '100%', width: `${progressPercent}%`, background: 'linear-gradient(90deg, #E91E8C, #2563EB)', borderRadius: 99, transition: 'width 0.5s ease' }} />
         </div>
 
@@ -302,7 +302,7 @@ export default function LearningCenter() {
             ? Array.from({ length: 6 }).map((_, i) => (
                 <div key={i} className="col-12 col-md-6 col-lg-4"><SkeletonCard /></div>
               ))
-            // 👇 Pass completed as a prop — checks if this module's ID is in the array from API
+            //  Pass completed as a prop — checks if this module's ID is in the array from API
             : filtered.map((module) => (
                 <div key={module.id} className="col-12 col-md-6 col-lg-4">
                   <ModuleCard

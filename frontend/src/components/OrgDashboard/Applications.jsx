@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ApplicantCard from "./ApplicantCard";
 
-const API = "http://localhost:8002/api/applications";
+const API = "/api/applications";
 
 export default function Applications({ applications, setApplications }) {
   const [filter, setFilter] = useState("all");

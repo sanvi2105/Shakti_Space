@@ -40,8 +40,8 @@ export const getProgress = async (req, res) => {
 // Body: { moduleId: "stock-market" }
 // Marks a module complete + awards XP (only once, never duplicate)
 export const markComplete = async (req, res) => {
-    console.log("req.user:", req.user);   // 👈 ADD THIS
-  console.log("body:", req.body);       // 👈 ADD THIS
+    console.log("req.user:", req.user);   //  ADD THIS
+  console.log("body:", req.body);       //  ADD THIS
   try {
     const { moduleId } = req.body;
 

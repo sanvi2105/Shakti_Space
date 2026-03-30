@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-const API = "http://localhost:8001";
+const API = "";
 
 // ─── All module content ───────────────────────────────────────────────────────
 const moduleData = {
@@ -323,9 +323,9 @@ export default function ResourcePage() {
   // Call backend to mark complete
   const markComplete = async () => {
     const token = localStorage.getItem("token");
-    console.log("Token:", token);           // 👈 ADD
-  console.log("Marking:", marking);       // 👈 ADD  
-  console.log("Completed:", completed);   // 👈 ADD
+    console.log("Token:", token);           //  ADD
+  console.log("Marking:", marking);       //  ADD  
+  console.log("Completed:", completed);   //  ADD
   
   if (!token || marking || completed) {
     console.log("Blocked! token:", !!token, "marking:", marking, "completed:", completed);

@@ -11,6 +11,7 @@ import userRoutes from "./routes/userRoutes.js";
 import progressRoutes from "./routes/progressRoutes.js";
 import storyRoutes from "./routes/storyRoutes.js";
 import applicationRoutes from "./routes/applicationRoutes.js";
+import path from "path";
 
 dotenv.config(); //read .env file
 
@@ -23,6 +24,11 @@ const allowedOrigins = [
   "http://localhost:5176"
 ];
 
+  app.use(cors({
+  origin: true,       // allow same origin
+  credentials: true
+  }));
+ /*
 app.use(cors({
   origin: function (origin, callback) {
     // allow requests with no origin (like Postman)
@@ -36,6 +42,7 @@ app.use(cors({
   },
   credentials: true
 }));
+*/
 
 //Middleware
 app.use(express.json()); //data(POST/PUT body) sent to server in JSON format, understand it
@@ -51,15 +58,23 @@ app.use("/api/stories", storyRoutes);
 app.use("/api/applications", applicationRoutes);
 
 // Test Route (optional but useful)
-app.get("/", (req, res) => {
+app.get("/api/test", (req, res) => {
   res.send("API is running...");
 });
 
 //Starting the server
-const PORT = process.env.PORT || 8002;
 
+const __dirname = path.resolve();
+
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+});
+
+const PORT = process.env.PORT || 8002;
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
 
 // import { setServers } from "node:dns/promises";

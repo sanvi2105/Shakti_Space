@@ -17,7 +17,7 @@ const Dashboard = () => {
 
   const fetchApplications = async (token) => {
     try {
-      const res = await fetch("http://localhost:8001/api/applications/my", {
+      const res = await fetch("/api/applications/my", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -239,7 +239,7 @@ const SuccessStories = () => {
 
   const fetchStories = async () => {
     try {
-      const res = await fetch("http://localhost:8001/api/stories");
+      const res = await fetch("/api/stories");
       const data = await res.json();
 
       // add default size to DB stories
@@ -272,7 +272,7 @@ const SuccessStories = () => {
   e.preventDefault();
 
   try {
-    const res = await fetch("http://localhost:8001/api/stories", {
+    const res = await fetch("/api/stories", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

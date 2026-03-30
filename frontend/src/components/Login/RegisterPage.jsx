@@ -48,7 +48,7 @@ const RegisterPage = () => {
 
     try {
       // POST request to backend
-      const res = await axios.post("http://localhost:8001/api/auth/register", registerData);
+      const res = await axios.post("/api/auth/register", registerData);
 
       // Success → redirect to login
       console.log("Register success:", res.data);
