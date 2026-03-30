@@ -1,4 +1,5 @@
 import express from "express";
+import protect from "../middleware/authMiddleware.js";
 import {
   applyJob,
   getUserApplication,
@@ -9,8 +10,8 @@ import {
 const router = express.Router();
 
 // USER
-router.post("/", applyJob);
-router.get("/my", getUserApplication);
+router.post("/", protect, applyJob);
+router.get("/my", protect, getUserApplication);
 
 // ORG
 router.get("/", getAllApplications);
