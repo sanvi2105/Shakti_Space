@@ -81,7 +81,7 @@ const LoginPage = () => {
                         {errors.form && <p className="text-danger">{errors.form}</p>}
                         <FormGroup>
                             <Label for="username">
-                            Enter Username
+                                Enter Username or Email
                             </Label>
                             <Input type="text"
                                 name="username"

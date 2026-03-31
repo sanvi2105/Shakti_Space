@@ -53,10 +53,15 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     try{
         const {username, password} = req.body;
-        const user = await User.findOne({username}); //searches mongodb for a user with that username
+        const user = await User.findOne({
+            $or: [
+                { username: username },
+                { email: username }
+            ]
+        }); //searches mongodb for a user with that username or email
 
         if (!user){
-            return res.status(404).json({message: `User with username ${username} not found`})
+            return res.status(404).json({message: `User not found`})
         }
 
         const isMatch = await bcrypt.compare(password, user.password); //compares entered pass and hashed pass
