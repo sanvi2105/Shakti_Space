@@ -39,7 +39,7 @@ const JobPortal = () => {
     [e.target.name]: e.target.value,
   });
 };
-
+ /*
 const handleSubmit = async (e) => {
   e.preventDefault();
 
@@ -98,9 +98,60 @@ const handleSubmit = async (e) => {
     } else {
       alert(data.message);
     }
-      */
+      
   } catch (e) {
     console.log(e);
+  }
+ };
+*/
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const token = localStorage.getItem("token");  // get token
+
+  if (!token) {
+    alert("You must be logged in to apply!");
+    return;
+  }
+
+  try {
+    const res = await fetch("/api/applications", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        ...formData,
+        jobTitle: selectedJob,
+      }),
+    });
+
+    const data = await res.json(); // only call once
+
+    if (res.ok) {
+      alert("Application submitted ✅");
+
+      setAppliedJobs((prev) => [...prev, selectedJob]);
+      setSelectedJob(null);
+
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        address: "",
+        experience: "",
+        skills: "",
+        availability: "",
+        whyHire: "",
+      });
+    } else {
+      alert(data.message || "Something went wrong!");
+    }
+  } catch (e) {
+    console.log(e);
+    alert("Network error. Try again!");
   }
 };
 
