@@ -4,11 +4,19 @@ import {
   PieChart, Pie, Cell, Legend
 } from "recharts";
 import { BarChart, Bar } from "recharts";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [applications, setApplications] = useState([]);
   const [activePage, setActivePage] = useState("dashboard");
   const [refreshFlag, setRefreshFlag] = useState(false); // NEW
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    window.location.href = "/login";
+  };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -95,6 +103,12 @@ const Dashboard = () => {
             className={`cursor-pointer px-4 py-2 rounded-lg ${activePage === "applications" ? "!bg-secondary text-white" : "!text-gray-600"}`}
           >
             Applications
+          </li>
+          <li
+            onClick={handleLogout}
+            className="cursor-pointer px-4 py-2 rounded-lg text-red-500 hover:bg-red-100"
+          >
+            Logout
           </li>
         </ul>
       </div>

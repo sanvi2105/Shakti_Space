@@ -8,7 +8,16 @@ const register = async (req, res) => {
         const user = await User.findOne({username}); //searches mongodb for a user with that username
 
         if (user){
-            return res.status(400).json({message: `User with this username already exists. Please choose another name.`});
+            return res.status(400).json({
+                message: `User with this username already exists. Please choose another name.`
+            });
+        }
+
+        const existingEmail = await User.findOne({ email });
+        if (existingEmail) {
+            return res.status(400).json({
+                message: "Email already exists"
+            });
         }
         
         const hashedPassword = await bcrypt.hash(password, 10); //hash pass before saving, so they arent saved in plain text
@@ -30,6 +39,11 @@ const register = async (req, res) => {
             }}); 
     } catch(e){
         console.error("Auth error:", e);
+        if (e.code === 11000) {
+            return res.status(400).json({
+                message: "Email or username already exists"
+            });
+        }
         res
             .status(500)
             .json({message: `Something went wrong.`});

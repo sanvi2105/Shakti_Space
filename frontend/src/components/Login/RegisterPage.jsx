@@ -19,6 +19,7 @@ const RegisterPage = () => {
 
   const [registerData, setRegisterData] = useState({
     username: "",
+    email: "",
     password: "",
     role: "user"
   });
@@ -36,6 +37,7 @@ const RegisterPage = () => {
     // Frontend validation
     const newErrors = {};
     if (!registerData.username) newErrors.username = "Username is required";
+    if (!registerData.email) newErrors.email = "Email is required";
     if (!registerData.password) newErrors.password = "Password is required";
 
     if (Object.keys(newErrors).length > 0) {
@@ -65,14 +67,9 @@ const RegisterPage = () => {
 
       window.location.reload();
     } catch (err) {
-      console.log(err);
-
-      // Check if username is taken
-      if (err.response?.data?.message?.includes("already exists")) {
-        setErrors({ username: err.response.data.message });
-      } else {
-        setErrors({ form: err.response?.data?.message || "Registration failed" });
-      }
+      console.log("FULL ERROR:", err.response);
+      const msg = err.response?.data?.message || "Registration failed";
+      setErrors({ form: msg });
     } finally {
       setLoading(false);
     }
@@ -95,6 +92,19 @@ const RegisterPage = () => {
             <Col xs="12" lg="6" className="p-4">
               <Form onSubmit={handleSubmit}>
                 {errors.form && <p className="text-danger">{errors.form}</p>}
+
+                <FormGroup>
+                  <Label for="email">Email</Label>
+                  <Input
+                    type="email"
+                    name="email"
+                    id="email"
+                    value={registerData.email}
+                    onChange={handleChange}
+                    invalid={!!errors.email}
+                  />
+                  <FormFeedback>{errors.email}</FormFeedback>
+                </FormGroup>
 
                 <FormGroup>
                   <Label for="username">Username</Label>
