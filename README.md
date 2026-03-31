@@ -164,3 +164,7 @@ npm run dev
 
 This project is built with the vision of empowering women by providing opportunities, resources, and a platform to grow, regardless of their background.
 
+
+## Live Demo
+Check out the live website here: [ShaktiSpace Demo](https://shaktispace.onrender.com)
+
