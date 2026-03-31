@@ -2,7 +2,9 @@ import Application from "../models/applicationModel.js";
 
 export const applyJob = async (req, res) => { //req from frontend, response sent to backend
     try {
-        const userId = "507f1f77bcf86cd799439011"; // dummy valid ObjectId
+      //  const userId = "507f1f77bcf86cd799439011"; // dummy valid ObjectId
+        // To this:
+        const userId = req.user.id; // real logged in user
 
         const {
             jobTitle, 
